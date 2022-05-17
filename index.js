@@ -1,23 +1,29 @@
-class Fila {
+class Deque {
   constructor() {
     this.itens = [];
   }
 
-  enqueue(item) {
-    this.itens.push(item);
+  insertFront(item) {
+    return this.itens.unshift(item);
   }
-
-  isEmpty() {
-    return this.itens.length == 0;
+  insertLast(item) {
+    return this.itens.push(item);
   }
-
-  dequeue() {
+  deleteFront() {
     if (this.isEmpty()) {
       return undefined;
     }
     return this.itens.shift();
   }
-
+  deleteLast() {
+    if (this.isEmpty()) {
+      return undefined;
+    }
+    return this.itens.pop();
+  }
+  isEmpty() {
+    return this.itens.length == 0;
+  }
   front() {
     return this.itens[0];
   }
@@ -25,16 +31,20 @@ class Fila {
     return this.itens[this.itens.length - 1];
   }
 }
-const fila = new Fila();
 
-fila.enqueue('Ferrari');
-fila.enqueue('Fusca');
-fila.enqueue('Del Rey');
-fila.enqueue('HB20');
-fila.dequeue();
+const deque = new Deque();
 
-console.table(fila.itens);
-console.log(fila.isEmpty());
+deque.insertFront('Ferrari');
+deque.insertFront('Fusca');
+deque.insertFront('Del Rey');
 
-console.log(fila.front());
-console.log(fila.rear());
+deque.insertLast('Kombi');
+deque.insertLast('Vectra');
+
+deque.deleteFront();
+deque.deleteLast();
+
+console.table(deque.itens);
+
+console.log(deque.front());
+console.log(deque.rear());
